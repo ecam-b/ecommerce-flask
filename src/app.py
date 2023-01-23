@@ -7,6 +7,9 @@ from config import DATABASE_CONNECTION_URI, SECRET_KEY
 # Database
 from database.db import db
 
+# Routes
+from routes import Usuario, Rol
+
 app = Flask(__name__)
 app.config['SECRET_KEY'] = SECRET_KEY
 
@@ -20,4 +23,9 @@ with app.app_context():
 
 
 if __name__ == '__main__':
+
+  # Register Blueprints
+  app.register_blueprint(Usuario.usuario, url_prefix='/usuario')
+  app.register_blueprint(Rol.rol, url_prefix='/rol')
+
   app.run(debug=True)
